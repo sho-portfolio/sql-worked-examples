@@ -1,8 +1,8 @@
 ## create a table of dates (mysql)
 
 ```sql
-SET @startDate = '2019-01-01';	-- SAME AS: SELECT @startDate := '2019-01-01';
-SET @endDate = '2019-01-10';		-- SELECT @endDate := '2019-01-10';
+SET @startDate = '2019-01-01';  -- SAME AS: SELECT @startDate := '2019-01-01';
+SET @endDate = '2019-01-10';    -- SELECT @endDate := '2019-01-10';
 
 CREATE TABLE tblDates(d DATE);
 
