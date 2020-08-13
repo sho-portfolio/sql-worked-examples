@@ -32,3 +32,33 @@ DROP TABLE tblDates;
 
 
 ```
+
+## create a table of dates (sql server)
+
+```sql 
+
+DECLARE @startDate AS DATE
+DECLARE @endDate AS DATE
+
+SET @startDate = '2015-01-01';	-- SAME AS: SELECT @startDate := '2019-01-01';
+SET @endDate = '2019-12-31';		-- SAME AS: SELECT @endDate := '2019-01-10';
+
+DROP TABLE IF EXISTS #tblDates;
+CREATE TABLE #tblDates(d DATE);
+
+
+WITH  my_cte AS
+(
+  SELECT @startDate AS n
+  UNION ALL
+  SELECT DATEADD(DAY, 1, n) FROM my_cte WHERE n < @endDate
+)
+INSERT INTO #tblDates(d)
+SELECT n FROM my_cte OPTION (MAXRECURSION 10000);
+
+SELECT * FROM #tblDates;
+
+DROP TABLE #tblDates;
+```
+
+
