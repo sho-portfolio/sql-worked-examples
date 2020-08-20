@@ -63,7 +63,7 @@ DROP TABLE #tblDates;
 
 
 
-## query JSON data (2 different formats shown below) (mysql)
+## JSON data (2 different formats shown below) (mysql)
 
 ```sql
 
@@ -108,7 +108,7 @@ FROM t1,
 ```
 
 
-## query fill in blanks with previous non-null value (sql server)
+## fill in blanks with previous non-null value (sql server)
 
 ```sql
 
