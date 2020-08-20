@@ -106,3 +106,28 @@ FROM t1,
                 address VARCHAR(100) PATH '$.address')
      ) A;
 ```
+
+
+## query fill in blanks with previous non-null value (sql server)
+
+```sql
+
+-- https://mysqlserverteam.com/json_table-the-best-of-both-worlds/
+-- https://stackoverflow.com/questions/1345065/sql-query-replace-null-value-in-a-row-with-a-value-from-the-previous-known-value
+DECLARE @Table TABLE(
+        ID INT,
+        Val INT
+)
+
+INSERT INTO @Table (ID,Val) SELECT 1, 3
+INSERT INTO @Table (ID,Val) SELECT 2, NULL
+INSERT INTO @Table (ID,Val) SELECT 3, 5
+INSERT INTO @Table (ID,Val) SELECT 4, NULL
+INSERT INTO @Table (ID,Val) SELECT 5, NULL
+INSERT INTO @Table (ID,Val) SELECT 6, 2
+
+
+SELECT  *,
+        ISNULL(Val, (SELECT TOP 1 Val FROM @Table WHERE ID < t.ID AND Val IS NOT NULL ORDER BY ID DESC))
+FROM    @Table t
+```
