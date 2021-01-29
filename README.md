@@ -131,3 +131,26 @@ SELECT  *,
         ISNULL(Val, (SELECT TOP 1 Val FROM @Table WHERE ID < t.ID AND Val IS NOT NULL ORDER BY ID DESC))
 FROM    @Table t
 ```
+
+
+
+
+## turn a row of data into a comma seperated list and assign to a variable
+
+```sql
+
+-- https://www.aspsnippets.com/Articles/Select-Column-values-as-Comma-Separated-Delimited-string-in-SQL-Server-using-COALESCE.aspx
+-- https://stackoverflow.com/questions/887628/convert-multiple-rows-into-one-with-comma-as-separator
+
+IF OBJECT_ID(N'tempdb..#T') IS NOT NULL DROP TABLE #T
+CREATE TABLE #T (col VARCHAR(10))
+INSERT INTO #T(col) SELECT 'A'
+INSERT INTO #T(col) SELECT 'B'
+INSERT INTO #T(col) SELECT 'C'
+
+DECLARE @S AS VARCHAR(MAX)
+
+SELECT @S = COALESCE(@S + ',', '') + col
+FROM #T
+
+PRINT @S
