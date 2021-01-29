@@ -133,8 +133,6 @@ FROM    @Table t
 ```
 
 
-
-
 ## turn a row of data into a comma seperated list and assign to a variable
 
 ```sql
@@ -152,5 +150,7 @@ DECLARE @S AS VARCHAR(MAX)
 
 SELECT @S = COALESCE(@S + ',', '') + col
 FROM #T
+```
+
 
 PRINT @S
