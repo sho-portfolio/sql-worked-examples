@@ -193,5 +193,11 @@ order by reservedKb desc
 ```
 
 
+## pivot data in mysql & sql server
+
+note that mysql produced inconsistent results when attempted ith mutual fund data
+http://www.artfulsoftware.com/infotree/qrytip.php?id=78
+
+
 
 
